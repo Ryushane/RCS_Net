@@ -55,27 +55,36 @@ if __name__== "__main__":
     A = 1
     f = 5
     fs = 256
-    phi = 0
+    phi = 50
     t = 1
     # phase=0
     sin = sin_wave(A=A, f=f, fs=fs, phi=phi, t=t)
     tri = triangle_wave(A=A, f=f, fs=fs, phi=phi, t=t)
     squ = square_wave(A=A, f=f, fs=fs, phi=phi, t=t)
-    np.save('sin',sin)
-    np.save('tri',tri)
-    np.save('squ',squ)
+    np.save('data/'+'sin_'+str(phi),sin)
+    np.save('data/'+'tri_'+str(phi),tri)
+    np.save('data/'+'squ_'+str(phi),squ)
 
-    # phase=30
-    sin = sin_wave(A=A, f=f, fs=fs, phi=30, t=t)
-    tri = triangle_wave(A=A, f=f, fs=fs, phi=30, t=t)
-    squ = square_wave(A=A, f=f, fs=fs, phi=30, t=t)
-    # print(squ.shape)
-    np.save('sin_30',sin)
-    np.save('tri_30',tri)
-    np.save('squ_30',squ)
-    # x = np.arange(0,t,1/fs)
-    # plt.xlabel('t/s')
-    # plt.ylabel('y')
-    # plt.grid()
-    # plt.plot(x, tri)
-    # plt.show()
+    # # phase=30
+    # sin = sin_wave(A=A, f=f, fs=fs, phi=30, t=t)
+    # tri = triangle_wave(A=A, f=f, fs=fs, phi=30, t=t)
+    # squ = square_wave(A=A, f=f, fs=fs, phi=30, t=t)
+    # # print(squ.shape)
+    # np.save('data/sin_30',sin)
+    # np.save('data/tri_30',tri)
+    # np.save('data/squ_30',squ)
+
+    # # phase=31
+    # sin = sin_wave(A=A, f=f, fs=fs, phi=31, t=t)
+    # tri = triangle_wave(A=A, f=f, fs=fs, phi=31, t=t)
+    # squ = square_wave(A=A, f=f, fs=fs, phi=31, t=t)
+    # # print(squ.shape)
+    # np.save('data/sin_31',sin)
+    # np.save('data/tri_31',tri)
+    # np.save('data/squ_31',squ)
+    # # x = np.arange(0,t,1/fs)
+    # # plt.xlabel('t/s')
+    # # plt.ylabel('y')
+    # # plt.grid()
+    # # plt.plot(x, tri)
+    # # plt.show()
