@@ -6,7 +6,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
-datapath = r'./handwriting'
+datapath = r'./train'
 labelpath = r'./train.txt'
 
 class MyDataset(Dataset):
