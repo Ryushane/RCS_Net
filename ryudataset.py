@@ -30,7 +30,7 @@ class MyDataset(Dataset):
     def __getitem__(self,index):
         fn, label = self.datasets[index]
         sig = loadmat(fn)
-        ipdb.set_trace()
+        # ipdb.set_trace()
         if self.transform is not None:
             sig = sig['temp_data'].astype(np.float32)
             sig = sig[:,0] # Only reserve the value of RCS
@@ -51,7 +51,7 @@ class MyDataset(Dataset):
             #right = int(middle)+16
             #sig = sig[left:right]
             #sig = np.append(sig,[middle])
-            sig = self.transform(sig).view(33)
+            # sig = self.transform(sig)
         return sig, label
 
     def __len__(self):
