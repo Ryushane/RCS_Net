@@ -3,30 +3,23 @@ import torch.utils.data
 import torch.backends.cudnn as cudnn
 import torchvision
 from torchvision import transforms as transforms
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader
 import numpy as np
 
 import argparse
-import ipdb
 
 from models import *
 from misc import progress_bar
-# from config.set_params import params as sp
-from utils.preprocessing import RCSdataset
 
-root = "./"
+
 CLASSES = ('car','cycling','walking')
 
 
 def main():
-    parser = argparse.ArgumentParser(description="RCSNet with PyTorch")
-    parser.add_argument('--input_dim', default=1, type=int, help='input dim')
-    parser.add_argument('--num_classes', default=3, type=int, help='number of classes')
+    parser = argparse.ArgumentParser(description="cifar-10 with PyTorch")
     parser.add_argument('--lr', default=0.001, type=float, help='learning rate')
     parser.add_argument('--epoch', default=200, type=int, help='number of epochs tp train for')
-    parser.add_argument('--trainBatchSize', default=64, type=int, help='training batch size')
-    parser.add_argument('--testBatchSize', default=64, type=int, help='testing batch size')
+    parser.add_argument('--trainBatchSize', default=100, type=int, help='training batch size')
+    parser.add_argument('--testBatchSize', default=100, type=int, help='testing batch size')
     parser.add_argument('--cuda', default=torch.cuda.is_available(), type=bool, help='whether cuda is in use')
     args = parser.parse_args()
 
@@ -37,8 +30,6 @@ def main():
 class Solver(object):
     def __init__(self, config):
         self.model = None
-        self.input_dim = config.input_dim
-        self.num_classes = config.num_classes
         self.lr = config.lr
         self.epochs = config.epoch
         self.train_batch_size = config.trainBatchSize
@@ -56,13 +47,12 @@ class Solver(object):
         test_transform = transforms.Compose([transforms.ToTensor()])
         # train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=train_transform)
         # self.train_loader = torch.utils.data.DataLoader(dataset=train_set, batch_size=self.train_batch_size, shuffle=True) 
-        train_set = RCSdataset(txt=root+'/'+'train.txt',transform=transforms.ToTensor())
+        train_set = MyDataset(txt=root+'/'+'train.txt',transform=transforms.ToTensor())
         self.train_loader = DataLoader(dataset=train_set, batch_size=self.train_batch_size, shuffle=True)
         # test_set = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=test_transform)
         # self.test_loader = torch.utils.data.DataLoader(dataset=test_set, batch_size=self.test_batch_size, shuffle=False)
-        test_set = RCSdataset(txt=root+'/'+'test.txt',transform=transforms.ToTensor())
+        test_set = MyDataset(txt=root+'/'+'test.txt',transform=transfroms.ToTensor())
         self.test_loader = DataLoader(dataset=test_set, batch_size=self.train_batch_size)
-        # ipdb.set_trace()
 
     def load_model(self):
         if self.cuda:
@@ -77,8 +67,7 @@ class Solver(object):
         # self.model = VGG13().to(self.device)
         # self.model = VGG16().to(self.device)
         # self.model = VGG19().to(self.device)
-        # self.model = GoogLeNet().to(self.device)
-        self.model = RCSNet(self.input_dim, self.num_classes).to(self.device)
+        self.model = GoogLeNet().to(self.device)
         # self.model = resnet18().to(self.device)
         # self.model = resnet34().to(self.device)
         # self.model = resnet50().to(self.device)
