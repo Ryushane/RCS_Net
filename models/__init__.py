@@ -1,4 +1,5 @@
 from .RCSNet import *
+from .RCSNet_7 import *
 from .AlexNet import *
 from .VGG import *
 from .ResNet import *

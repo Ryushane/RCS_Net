@@ -78,7 +78,8 @@ class Solver(object):
         # self.model = VGG16().to(self.device)
         # self.model = VGG19().to(self.device)
         # self.model = GoogLeNet().to(self.device)
-        self.model = RCSNet(self.input_dim, self.num_classes).to(self.device)
+        # self.model = RCSNet(self.input_dim, self.num_classes).to(self.device)
+        self.model = RCSNet_7(self.input_dim, self.num_classes).to(self.device)
         # self.model = resnet18().to(self.device)
         # self.model = resnet34().to(self.device)
         # self.model = resnet50().to(self.device)
@@ -143,7 +144,7 @@ class Solver(object):
         return test_loss, test_correct / total
 
     def save(self):
-        model_out_path = "model.pth"
+        model_out_path = "./checkpoints/model_5x1.pth"
         torch.save(self.model, model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
 
