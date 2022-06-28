@@ -30,11 +30,13 @@ class RCSdataset(Dataset):
     def __getitem__(self,index):
         fn, label = self.datasets[index]
         sig = loadmat(fn)
-        # ipdb.set_trace()
+        #ipdb.set_trace()
         if self.transform is not None:
             sig = sig['temp_data'].astype(np.float32)
             sig = sig[:,0] # Only reserve the value of RCS
+            sig = sig[::100] # Resample the data. 25x frequency of wheel rotate.
             sig = sig[np.newaxis, :] # Add a new dimension for RCS
+            
             # max_data = max(sig)
             # db3 = max_data/(2**0.5)
             # max_index = []

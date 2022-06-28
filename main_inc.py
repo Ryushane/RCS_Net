@@ -79,7 +79,8 @@ class Solver(object):
         # self.model = VGG19().to(self.device)
         # self.model = GoogLeNet().to(self.device)
         # self.model = RCSNet(self.input_dim, self.num_classes).to(self.device)
-        self.model = RCSNet_11(self.input_dim, self.num_classes).to(self.device)
+        self.model = RCSNet_9(self.input_dim, self.num_classes).to(self.device)
+        self.model_inc = RCSNet_9(self.input_dim, self.num_classes).to(self.device)
         # self.model = resnet18().to(self.device)
         # self.model = resnet34().to(self.device)
         # self.model = resnet50().to(self.device)
@@ -90,6 +91,8 @@ class Solver(object):
         # self.model = DenseNet169().to(self.device)
         # self.model = DenseNet201().to(self.device)
         # self.model = WideResNet(depth=28, num_classes=10).to(self.device)
+
+        ipdb.set_trace()
 
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr)
         self.scheduler = optim.lr_scheduler.MultiStepLR(self.optimizer, milestones=[75, 150], gamma=0.5)

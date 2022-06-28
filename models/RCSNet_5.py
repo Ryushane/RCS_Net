@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch
 import ipdb
 
-class RCSNet(nn.Module):
+class RCSNet_5(nn.Module):
     def __init__(self, input_dim, num_classes):
         super().__init__()
 
@@ -20,16 +20,16 @@ class RCSNet(nn.Module):
         # Classifiy
         self.classifier = nn.Sequential(
             nn.Dropout(),
-            nn.Linear(639232, 128),
+            nn.Linear(5632, 128),
             nn.ReLU(),
             nn.Dropout(),
             nn.Linear(128, num_classes)
-        )
+            )
 
     def forward(self, x):
-        # ipdb.set_trace()
+        #ipdb.set_trace()
         x = self.features(x)
-        x = x.view(x.size(0), 639232)
+        x = x.view(x.size(0), -1)
         out = self.classifier(x)
 
         return out

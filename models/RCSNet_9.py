@@ -2,25 +2,25 @@ import torch.nn as nn
 import torch
 import ipdb
 
-class RCSNet_7(nn.Module):
+class RCSNet_9(nn.Module):
     def __init__(self, input_dim, num_classes):
         super().__init__()
 
         # Extract features, 1D conv
         self.features = nn.Sequential(
-            nn.Conv1d(input_dim, 64, 7),
+            nn.Conv1d(input_dim, 64, 9),
             nn.ReLU(),
             nn.Dropout(),
-            nn.Conv1d(64, 64, 7),
+            nn.Conv1d(64, 64, 9),
             nn.ReLU(),
             nn.Dropout(),
-            nn.Conv1d(64, 64, 7),
+            nn.Conv1d(64, 64, 9),
             nn.ReLU(),
         )
         # Classifiy
         self.classifier = nn.Sequential(
             nn.Dropout(),
-            nn.Linear(5248, 128),
+            nn.Linear(4864, 128),
             nn.ReLU(),
             nn.Dropout(),
             nn.Linear(128, num_classes)
