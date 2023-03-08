@@ -1,0 +1,38 @@
+
+===> epoch: 1/200
+train:
+Traceback (most recent call last):
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\scipy\io\matlab\_mio.py", line 39, in _open_file
+    return open(file_like, mode), True
+FileNotFoundError: [Errno 2] No such file or directory: '../data/cycling/cycling_0degrees_23_rcs_6.mat'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 205, in <module>
+    main()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 65, in main
+    solver.run()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 195, in run
+    train_result = self.train()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 142, in train
+    for batch_num, (data, target) in enumerate(self.train_loader):
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\utils\data\dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\utils\data\dataloader.py", line 671, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\utils\data\_utils\fetch.py", line 58, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\utils\data\_utils\fetch.py", line 58, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\utils\preprocessing.py", line 32, in __getitem__
+    sig = loadmat(fn)
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\scipy\io\matlab\_mio.py", line 225, in loadmat
+    with _open_file_context(file_name, appendmat) as f:
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\scipy\io\matlab\_mio.py", line 17, in _open_file_context
+    f, opened = _open_file(file_like, appendmat, mode)
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\scipy\io\matlab\_mio.py", line 45, in _open_file
+    return open(file_like, mode), True
+FileNotFoundError: [Errno 2] No such file or directory: '../data/cycling/cycling_0degrees_23_rcs_6.mat'

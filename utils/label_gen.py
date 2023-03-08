@@ -8,9 +8,11 @@ import ipdb
 root = '../data'  # data path
 root = root.replace('\\','/')
 
-filename = [] # All data names and labels
+train = [] # 训练集数据
+test = [] # 测试集数据
 
 def generate(dir,label):
+	filename = [] # 所有数据的名称和label
 	files = os.listdir(dir)
 	files.sort()
 	print ('****************')
@@ -26,11 +28,15 @@ def generate(dir,label):
 		# ipdb.set_trace()
 		# listText.write(name)
 
-	# Randomlize the file list
+	# 打乱文件列表
 	np.random.shuffle(filename)
-	train = filename[:int(len(filename)*0.8)]
-	test = filename[int(len(filename)*0.8):]
-
+	for file in filename[:int(len(filename)*0.8)]:
+		train.append(file)
+	for file in filename[int(len(filename)*0.8):]:
+		test.append(file)
+	# test.append = filename[int(len(filename)*0.8):]
+	np.random.shuffle(train)
+	np.random.shuffle(test)
 	with open('train.txt','w') as f1, open('test.txt','w') as f2:
 		for i in train:
 			f1.write(i+'\n')
@@ -45,9 +51,9 @@ def generate(dir,label):
  
  
 if __name__ == '__main__':
-	i = 0
-	folderlist = os.listdir(root)          # list the folder
+	i = 2
+	folderlist = os.listdir(root)          #列举文件夹
 	for folder in folderlist:
 		generate(os.path.join(root, folder),i)
-		i += 1
+		i -= 1
 

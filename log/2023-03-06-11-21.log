@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 236, in <module>
+    main()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 67, in main
+    solver.run()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 225, in run
+    print("\n===> epoch: %d/%d" % epoch %self.epochs)
+TypeError: not enough arguments for format string
+Traceback (most recent call last):
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 236, in <module>
+    main()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 67, in main
+    solver.run()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 225, in run
+    print("\n===> epoch: %d/%d" % epoch %self.epochs)
+TypeError: not enough arguments for format string

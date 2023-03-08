@@ -1,0 +1,13 @@
+
+===> epoch: 1/200
+train:
+ 1/75 [=>..............................................................................]  Step: 4s142ms | Tot: 0ms | Loss: 2.1855 | Acc: 18.750% (6/32) 2/75 [==>.............................................................................]  Step: 376ms | Tot: 376ms | Loss: 433.5945 | Acc: 29.688% (19/64) 3/75 [===>............................................................................]  Step: 373ms | Tot: 750ms | Loss: 320.0445 | Acc: 31.250% (30/96) 4/75 [====>...........................................................................]  Step: 391ms | Tot: 1s142ms | Loss: 250.0044 | Acc: 32.812% (42/128) 5/75 [=====>..........................................................................]  Step: 381ms | Tot: 1s524ms | Loss: 201.1863 | Acc: 36.875% (59/160) 6/75 [======>.........................................................................]  Step: 426ms | Tot: 1s950ms | Loss: 168.0357 | Acc: 37.500% (72/192)Traceback (most recent call last):
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 236, in <module>
+    main()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 67, in main
+    solver.run()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 226, in run
+    train_result = self.train()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_newwork\main.py", line 181, in train
+    train_loss += loss.item()
+KeyboardInterrupt
