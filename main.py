@@ -17,10 +17,24 @@ from misc import progress_bar
 from utils.preprocessing import RCSdataset
 from utils.preprocessing import get_mean_std_value, get_max_min_value
 
-
+import random
 import time
 import os
 import sys
+
+
+
+seed_num = 435
+root = "./"
+CLASSES = ('car','cycling','walking')
+
+# 固定seed
+def setup_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.backends.cudnn.deterministic = True
 
 # 输出log，方便晚上批量跑实验
 class Logger(object):
@@ -41,21 +55,16 @@ class Logger(object):
 
     def flush(self):
         pass
-
-root = "./"
-CLASSES = ('car','cycling','walking')
-
-
+    
 def main():
     parser = argparse.ArgumentParser(description="RCSNet with PyTorch")
     parser.add_argument('--input_dim', default=1, type=int, help='input dim')
     parser.add_argument('--num_classes', default=3, type=int, help='number of classes')
     parser.add_argument('--lr', default=0.01, type=float, help='learning rate')
-    parser.add_argument('--epoch', default=150, type=int, help='number of epochs tp train for')
+    parser.add_argument('--epoch', default=200, type=int, help='number of epochs tp train for')
     parser.add_argument('--trainBatchSize', default=32, type=int, help='training batch size')
     parser.add_argument('--testBatchSize', default=32, type=int, help='testing batch size')
     parser.add_argument('--cuda', default=torch.cuda.is_available(), type=bool, help='whether cuda is in use')
-    parser.add_argument('--is_WA', default = True, type = bool)
     args = parser.parse_args()
 
     sys.stdout = Logger(sys.stdout)  #  将输出记录到log
@@ -93,7 +102,6 @@ class Solver(object):
         self.epochs = config.epoch
         self.train_batch_size = config.trainBatchSize
         self.test_batch_size = config.testBatchSize
-        self.is_WA = config.is_WA
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = None
         self.scheduler = None
@@ -106,15 +114,14 @@ class Solver(object):
 
         input_transform = Compose([
                                 ToTensor(),
-                                RCSNorm(28, -65)
-                                # Normalize([0.6855],[0.0898])
-                                
+                                # Normalize([-1.2481],[8.3537])  # 3 Classes
+                                Normalize([-2.8032],[8.3217])  # 4 Classes
                                 ])
 
         input_transform_eval = Compose([
                                 ToTensor(),
-                                RCSNorm(28, -65)
-                                # Normalize([0.6855],[0.0898]),
+                                # Normalize([-1.2481],[8.3537])  # 3 Class
+                                Normalize([-2.8032],[8.3217])  # 4 Classes
                                 ])
         # train_transform = transforms.Compose([transforms.RandomHorizontalFlip(), transforms.ToTensor()])
         # test_transform = transforms.Compose([transforms.ToTensor()])
@@ -213,7 +220,8 @@ class Solver(object):
         return test_loss, test_correct / total
 
     def save(self):
-        model_out_path = "./checkpoints/model.pth"
+        model_out_path = "./checkpoints/" + "epochs-" + str(self.epochs) + "_lr-" + str(self.lr) +  ".pth"
+        # model_out_path = "./checkpoints/model.pth"
         torch.save(self.model, model_out_path)
         print("Checkpoint saved to {}".format(model_out_path))
 

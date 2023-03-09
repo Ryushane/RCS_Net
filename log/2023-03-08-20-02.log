@@ -1,0 +1,27 @@
+
+===> epoch: 1/2
+train:
+Traceback (most recent call last):
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_network\main.py", line 236, in <module>
+    main()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_network\main.py", line 67, in main
+    solver.run()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_network\main.py", line 226, in run
+    train_result = self.train()
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_network\main.py", line 177, in train
+    output = self.model(data)
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_network\models\RCSNet_7.py", line 82, in forward
+    out = self.classifier(x)
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\nn\modules\container.py", line 204, in forward
+    input = module(input)
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\nn\modules\module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "c:\Users\Ryushane\Documents\MasterRyu\Code\one_dim\RCS_Incremental_Learning_initial_network\models\RCSNet_7.py", line 18, in forward
+    for i in range(self.cls_batch_num):
+  File "C:\Users\Ryushane\anaconda3\envs\ptgpu\lib\site-packages\torch\nn\modules\module.py", line 1269, in __getattr__
+    raise AttributeError("'{}' object has no attribute '{}'".format(
+AttributeError: 'WALinear' object has no attribute 'cls_batch_num'

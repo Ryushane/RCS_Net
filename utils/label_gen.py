@@ -5,7 +5,8 @@ import os
 import numpy as np
 import ipdb
 
-root = '../data'  # data path
+# root = '../data'  # data path
+root = '../data_with_new_feature'  # data path
 root = root.replace('\\','/')
 
 train = [] # 训练集数据
@@ -51,9 +52,11 @@ def generate(dir,label):
  
  
 if __name__ == '__main__':
-	i = 2
+	i = 0
 	folderlist = os.listdir(root)          #列举文件夹
 	for folder in folderlist:
-		generate(os.path.join(root, folder),i)
-		i -= 1
-
+		if(i <= 2):
+			generate(os.path.join(root, folder),i)
+		else:
+			generate(os.path.join(root, folder),i-1)
+		i += 1
